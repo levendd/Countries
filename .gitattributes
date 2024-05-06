@@ -1,2 +1,3 @@
 *.kotlin linugist-detecable=true
 *.java linguist-detectable=false
+*.html linguist-detectable=false
