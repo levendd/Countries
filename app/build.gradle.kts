@@ -47,14 +47,7 @@ android {
     }
 
 }
-val lifeCycleExtensionVersion = "1.1.1"
-val supportVersion = "28.0.0"
-val retrofitVersion = "2.9.0"
-val glideVersion = "4.9.0"
-val rxJavaVersion = "2.2.9"
-val roomVersion = "2.6.1"
-val navVersion = "2.7.7"
-val preferencesVersion = "1.1.0"
+
 
 dependencies {
 
@@ -78,10 +71,14 @@ dependencies {
     implementation (libs.material)
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
-    implementation (libs.adapter.rxjava2)
+
     implementation (libs.glide)
     implementation (libs.palette.v7)
     implementation (libs.design)
     implementation (libs.androidx.preference)
+    implementation (libs.rxjava)
+
+    implementation ("io.reactivex.rxjava3:rxandroid:3.0.0")
+    implementation ("com.squareup.retrofit2:adapter-rxjava3:2.9.0")
 
 }

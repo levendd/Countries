@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.levojuk.countries.R
 import com.levojuk.countries.adapter.CountryAdapter
 import com.levojuk.countries.databinding.FragmentFeedBinding
 import com.levojuk.countries.viewmodel.FeedViewModel
@@ -39,6 +37,15 @@ class FeedFragment : Fragment() {
         viewModel.refreshData()
         binding.countryList.layoutManager = LinearLayoutManager(context)
         binding.countryList.adapter = countryAdapter
+
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.countryList.visibility = View.GONE
+            binding.countryError.visibility =View.GONE
+            binding.countryLoading.visibility = View.VISIBLE
+            viewModel.refreshData()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
         observeLiveData()
     }
 
