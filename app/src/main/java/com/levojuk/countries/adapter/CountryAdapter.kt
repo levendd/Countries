@@ -6,6 +6,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.levojuk.countries.databinding.ItemCountryBinding
 import com.levojuk.countries.model.Country
+import com.levojuk.countries.util.downloadFromUrl
+import com.levojuk.countries.util.placeHolderProgressBar
 import com.levojuk.countries.view.FeedFragmentDirections
 
 class CountryAdapter(val countryList: ArrayList<Country> ):RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
@@ -32,6 +34,9 @@ class CountryAdapter(val countryList: ArrayList<Country> ):RecyclerView.Adapter<
             val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment()
             Navigation.findNavController(it).navigate(action)
         }
+        holder.binding.imageView.downloadFromUrl(countryList[position].imageUrl,
+            placeHolderProgressBar(holder.itemView.context)
+        )
 
 
     }

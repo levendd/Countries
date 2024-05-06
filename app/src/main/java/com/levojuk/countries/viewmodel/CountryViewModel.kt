@@ -1,10 +1,10 @@
 package com.levojuk.countries.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.levojuk.countries.model.Country
 
-class CountryViewModel : ViewModel() {
+class CountryViewModel (application: Application) : BaseViewModel(application) {
     val countryLiveData = MutableLiveData<Country>()
     fun getDataFromRoom(){
         val country = Country("Turkey","Ankara","Asia","TRY","Turkish","www.ss.com")
