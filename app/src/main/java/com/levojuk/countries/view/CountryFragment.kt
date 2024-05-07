@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.levojuk.countries.R
 import com.levojuk.countries.databinding.FragmentCountryBinding
+import com.levojuk.countries.util.downloadFromUrl
+import com.levojuk.countries.util.placeHolderProgressBar
 import com.levojuk.countries.viewmodel.CountryViewModel
 
 class CountryFragment : Fragment() {
@@ -33,11 +33,12 @@ private var countryUuid = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this)[CountryViewModel::class.java]
-        viewModel.getDataFromRoom()
         arguments?.let {
             countryUuid =CountryFragmentArgs.fromBundle(it).countryUuid
         }
+        viewModel = ViewModelProviders.of(this)[CountryViewModel::class.java]
+        viewModel.getDataFromRoom(countryUuid)
+
         observeLiveData()
     }
   private  fun observeLiveData(){
@@ -48,6 +49,9 @@ private var countryUuid = 0
                 binding.countryLanguage2.text = it.countryLanguage
                 binding.countryRegion2.text = it.countryRegion
                 binding.countryCurrency2.text = it.countryCurrency
+                context?.let {context->
+                    binding.countryImage.downloadFromUrl(it.imageUrl, placeHolderProgressBar(context))  }
+
             }
         })
     }

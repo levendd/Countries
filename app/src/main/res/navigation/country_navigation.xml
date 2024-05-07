@@ -24,6 +24,10 @@
         android:label="FeedFragment" >
         <action
             android:id="@+id/action_feedFragment_to_countryFragment"
-            app:destination="@id/countryFragment" />
+            app:destination="@id/countryFragment" >
+            <argument
+                android:name="countryUuid"
+                android:defaultValue="0" />
+        </action>
     </fragment>
 </navigation>
